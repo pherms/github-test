@@ -1,0 +1,21 @@
+on:
+  schedule:
+    - cron: '00 6 * * *'
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - develop
+
+name: Test Workflow
+jobs:
+  PR_Decoration:
+    name: Test Workflow on branches
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Install Sonarscanner
+        run: |
+          echo "Installing Sonar scanner for dotnet"
+          dotnet tool install --global dotnet-sonarscanner
