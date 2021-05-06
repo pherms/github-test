@@ -14,11 +14,11 @@ jobs:
     env:
       GITHUBBRANCH: "develop"
     steps:
-      - name: Checkout
+      - name: Checkout on manual or PR
         uses: actions/checkout@v1
         if: ${{ github.event_name != 'schedule' }}
           
-      - name: Checkout
+      - name: Checkout on schedule
         uses: actions/checkout@v1
         if: ${{ github.event_name == 'schedule' }}
         with:
