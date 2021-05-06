@@ -1,0 +1,35 @@
+on:
+  schedule:
+    - cron: '45 12 * * *'
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - develop
+
+name: Test Workflow with if
+jobs:
+  PR_Decoration:
+    name: Test Workflow on branches with if
+    runs-on: macos-latest
+    env:
+      GITHUBBRANCH: "develop"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          ref: $GITHUBBRANCH
+
+      - name: Install Sonarscanner
+        run: |
+          echo "Installing Sonar scanner for dotnet"
+          dotnet tool install --global dotnet-sonarscanner
+
+      - name: Echo Github branch
+        run: echo "Branch is $GITHUB_REF"
+        
+      - name: Echo Github Event name
+        run: echo "Event is $github.event_name"
+        
+      - name: Echo when action is on schedule
+        if: ${{ github.event_name != 'workflow_dispatch' || github.event_name != 'pull_request' }}
+        run: echo "Workflow ran on schedule"
