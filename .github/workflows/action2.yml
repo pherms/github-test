@@ -28,7 +28,7 @@ jobs:
         run: echo "Branch is $GITHUB_REF"
         
       - name: Echo Github Event name
-        run: echo "Event is $github.event_name"
+        run: echo "Event is $GITHUB_EVENT_NAME"
         
       - name: Echo when action is on schedule
         if: ${{ github.event_name != 'workflow_dispatch' || github.event_name != 'pull_request' }}
