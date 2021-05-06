@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '30 11 * * *'
+    - cron: '30 12 * * *'
   workflow_dispatch:
   pull_request:
     branches:
@@ -11,11 +11,13 @@ jobs:
   PR_Decoration:
     name: Test Workflow on branches
     runs-on: macos-latest
+    env:
+      GITHUBBRANCH: "develop"
     steps:
       - name: Checkout
         uses: actions/checkout@v1
         with:
-          ref: develop
+          ref: $GITHUBBRANCH
 
       - name: Install Sonarscanner
         run: |
@@ -24,3 +26,6 @@ jobs:
 
       - name: Echo Github branch
         run: echo "Branch is $GITHUB_REF"
+        
+      - name: Echo Github Event name
+        run: echo "Event is $github.event_name"
