@@ -19,3 +19,6 @@ jobs:
         run: |
           echo "Installing Sonar scanner for dotnet"
           dotnet tool install --global dotnet-sonarscanner
+          
+      - name: Echo Github branch
+        run: echo "Branch is $GITHUB_REF"
