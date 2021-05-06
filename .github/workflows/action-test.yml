@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
         with:
-          ref: $GITHUBBRANCH
+          ref: ${{ env.GITHUBBRANCH }}
 
       - name: Install Sonarscanner
         run: |
@@ -28,4 +28,4 @@ jobs:
         run: echo "Branch is $GITHUB_REF"
         
       - name: Echo Github Event name
-        run: echo "Event is $github.event_name"
+        run: echo "Event is ${{ env.github.event_name }}"
