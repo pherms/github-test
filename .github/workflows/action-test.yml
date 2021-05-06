@@ -28,4 +28,4 @@ jobs:
         run: echo "Branch is $GITHUB_REF"
         
       - name: Echo Github Event name
-        run: echo "Event is ${{ env.github.event_name }}"
+        run: echo "Event is $GITHUB_EVENT_NAME"
