@@ -16,6 +16,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+        if: ${{ github.event_name != 'schedule' }}
+          
+      - name: Checkout
+        uses: actions/checkout@v1
+        if: ${{ github.event_name == 'schedule' }}
         with:
           ref: ${{ env.GITHUBBRANCH }}
 
