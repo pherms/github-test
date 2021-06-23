@@ -5,6 +5,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Create SSH key
         run: |
           mkdir -p ~/.ssh/
@@ -16,3 +18,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{secrets.SSH_KEY_SQPG}}
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
+      - name: copy source
+        run: |
+          scp -R ${{ github.workspace }}/ root@www.pascalherms.nl:/home/git/
+     -
