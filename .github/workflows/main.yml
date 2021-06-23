@@ -1,3 +1,6 @@
+on:
+  - workflow_dispatch
+name: Deploy web
 jobs:
   build:
     runs-on: ubuntu-latest
