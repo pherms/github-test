@@ -20,4 +20,4 @@ jobs:
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
       - name: copy source
         run: |
-          scp -R ${{ github.workspace }}/ root@www.pascalherms.nl:/home/git/
+          scp ${{ github.workspace }}/ root@www.pascalherms.nl:/home/git/
