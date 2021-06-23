@@ -21,4 +21,3 @@ jobs:
       - name: copy source
         run: |
           scp -R ${{ github.workspace }}/ root@www.pascalherms.nl:/home/git/
-     -
