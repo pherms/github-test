@@ -1,10 +1,11 @@
 on:
   - push
+  
 name: Deploy web
 jobs:
   buildbeta:
     name: deploy to Beta server
-    if: contains(github.ref.refs.tags,'-beta')
+    if: contains(github.ref,'release')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,7 +21,7 @@ jobs:
           target: "/home/git/beta"
   buildprod:
     name: deploy to Prod server
-    if: contains(github.ref.refs.heads,'main')
+    if: contains(github.ref,'main')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
