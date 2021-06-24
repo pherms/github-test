@@ -1,8 +1,10 @@
 on:
-  - workflow_dispatch
+  - push
 name: Deploy web
 jobs:
   build:
+    name: deploy to Beta server
+    if: contains(github.ref.refs.tags,"-beta")
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -15,7 +17,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
           source: "${{ github.workspace }}/*"
-          target: "/home/git/"
+          target: "/home/git/beta"
 
 #       - name: copy source
 #         run: |
