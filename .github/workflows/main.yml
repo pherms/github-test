@@ -5,7 +5,7 @@ name: Deploy web
 jobs:
   buildbeta:
     name: deploy to Beta server
-    if: contains(github.ref,'-beta')
+    if: contains(github.ref,'release')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
