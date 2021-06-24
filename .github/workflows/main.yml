@@ -20,7 +20,7 @@ jobs:
           target: "/home/git/beta"
   buildprod:
     name: deploy to Prod server
-    if: contains(github.ref.refs.heads,'main')
+    if: contains(github.ref.refs.heads,'release')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
